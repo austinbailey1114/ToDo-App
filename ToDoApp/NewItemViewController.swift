@@ -30,7 +30,7 @@ class NewItemViewController: UIViewController {
         let newItem = itemInput.text! + "`" + timeInput.text! + "`" + dayofWeekInput.text!
         let previousItems = items!.value(forKey: "toDo") as! [String]
         let UpdatedItems = [newItem] + previousItems
-        items?.setValue(UpdatedItems, forKey: "toDo")
+        items!.setValue(UpdatedItems, forKey: "toDo")
         do {
             try keepContext!.save()
         }

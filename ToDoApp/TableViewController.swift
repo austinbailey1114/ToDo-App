@@ -11,8 +11,12 @@ import CoreData
 
 class TableViewController: UITableViewController {
     
+    var keepContext: NSManagedObjectContext?
+    var items: NSManagedObject?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         NavigationViewController.keepContext = context
@@ -43,6 +47,9 @@ class TableViewController: UITableViewController {
         catch {
             //add code
         }
+        
+        keepContext = NavigationViewController.keepContext
+        items = NavigationViewController.items
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -60,23 +67,31 @@ class TableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        let toDo = items!.value(forKey: "toDo") as! [String]
+        return toDo.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as? ItemTableViewCell else {
+            fatalError("Fatal error")
+        }
+        let toDo = items!.value(forKey: "toDo") as! [String]
+        let item = toDo[indexPath.row]
+        let components = item.components(separatedBy: "`")
+        cell.itemLabel.text! = components[0]
+        cell.timeLabel.text! = components[1]
 
         // Configure the cell...
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
