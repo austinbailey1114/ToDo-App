@@ -53,11 +53,7 @@ class TableViewController: UITableViewController {
         
         keepContext = NavigationViewController.keepContext
         items = NavigationViewController.items
-
-        let toDo = items!.value(forKey: "toDo") as! [String]
-        if toDo.count > 0 {
-            let firstItem = toDo[0].components(separatedBy: "`")
-        }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -96,20 +92,35 @@ class TableViewController: UITableViewController {
         cell.itemLabel.text! = components[0]
         cell.timeLabel.text! = components[1]
         cell.dayLabel.text! = components[2]
-        cell.dateLabel.text! = components[3]
+        cell.dateLabel.text! = ""
         if cell.itemLabel.text! == "0" && cell.timeLabel.text! == "0" {
             cell.itemLabel.isHidden = true
             cell.timeLabel.isHidden = true
             cell.doneSwitch.isHidden = true
+            cell.dateLabel.isHidden = true
+            cell.dayLabel.isHidden = false
+            cell.backgroundColor! = UIColor(red:0.75, green:0.75, blue:0.75, alpha:1.0)
+
         }
         else {
             cell.dayLabel.isHidden = true
+            cell.itemLabel.isHidden = false
+            cell.timeLabel.isHidden = false
+            cell.doneSwitch.isHidden = false
+            cell.dateLabel.isHidden = false
+            cell.backgroundColor! = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
         }
 
         // Configure the cell...
 
         return cell
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
+    
     
 
     /*
