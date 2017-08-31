@@ -54,6 +54,10 @@ class TableViewController: UITableViewController {
         keepContext = NavigationViewController.keepContext
         items = NavigationViewController.items
 
+        let toDo = items!.value(forKey: "toDo") as! [String]
+        if toDo.count > 0 {
+            let firstItem = toDo[0].components(separatedBy: "`")
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -85,35 +89,22 @@ class TableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as? ItemTableViewCell else {
             fatalError("Fatal error")
         }
-        
         let toDo = items!.value(forKey: "toDo") as! [String]
         let item = toDo[indexPath.row]
         let components = item.components(separatedBy: "`")
-        if indexPath.row == 0 {
-            currentDay = components[2]
-            currentDate = components[3]
-            cell.dayLabel.text! = currentDay!
-            cell.timeLabel.isHidden = true
-            cell.itemLabel.isHidden = true
-            cell.dateLabel.isHidden = true
-            cell.doneSwitch.isHidden = true
-            return cell
-        }
-        else if currentDay != components[2] {
-            currentDay = components[2]
-            currentDate = components[3]
-            cell.dayLabel.text! = currentDay!
-            cell.timeLabel.isHidden = true
-            cell.itemLabel.isHidden = true
-            cell.dateLabel.isHidden = true
-            cell.doneSwitch.isHidden = true
-            return cell
-        }
-        print(currentDay!)
+        
         cell.itemLabel.text! = components[0]
         cell.timeLabel.text! = components[1]
-        cell.dayLabel.isHidden = true
-        cell.dateLabel.isHidden = true
+        cell.dayLabel.text! = components[2]
+        cell.dateLabel.text! = components[3]
+        if cell.itemLabel.text! == "0" && cell.timeLabel.text! == "0" {
+            cell.itemLabel.isHidden = true
+            cell.timeLabel.isHidden = true
+            cell.doneSwitch.isHidden = true
+        }
+        else {
+            cell.dayLabel.isHidden = true
+        }
 
         // Configure the cell...
 

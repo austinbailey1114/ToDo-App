@@ -43,11 +43,17 @@ class NewItemViewController: UIViewController {
         itemInput.text! = ""
         timeInput.text! = ""
         dayofWeekInput.text! = ""
+        dateInput.text! = ""
+        
+        for item in UpdatedItems {
+            print(item)
+        }
         
     }
     
     func insertItem(previousItems: [String], newItem: String) -> [String] {
         //if compareDates == 0, sort based on time
+        print(previousItems.count)
         var newItems = previousItems
         let newItemComponents = newItem.components(separatedBy: "`")
         var i = 0
@@ -55,19 +61,32 @@ class NewItemViewController: UIViewController {
             let components = item.components(separatedBy: "`")
             //if new date is before old date, insert before
             if compareDates(oldDate: components[3], newDate: newItemComponents[3]) == -1 {
-                newItems.insert(newItem, at: i)
-                return newItems
+                if !newItems.contains("0`0`" + newItemComponents[2] + "`" + newItemComponents[3]) {
+                    newItems.insert("0`0`" + newItemComponents[2] + "`" + newItemComponents[3], at: i)
+                    newItems.insert(newItem, at: i + 1)
+                    return newItems
+                }
+                else {
+                    newItems.insert(newItem, at: i)
+                    return newItems
+                }
+                
             }
             //if new date is same as old date, insert based on time
-            else if compareDates(oldDate: components[1], newDate: newItemComponents[1]) == 0 {
-                if components[3].integerValue! > newItemComponents[3].integerValue! {
+            else if compareDates(oldDate: components[3], newDate: newItemComponents[3]) == 0 {
+                //PROBLEM if you have more than 1 item on this date, itll just add at i+1
+                if components[1].integerValue! > newItemComponents[1].integerValue! {
                     newItems.insert(newItem, at: i)
                 }
+                
                 else { newItems.insert(newItem, at: i + 1) }
                 return newItems
             }
             i += 1
             
+        }
+        if !newItems.contains("0`0`" + newItemComponents[2] + "`" + newItemComponents[3]) {
+            newItems.append("0`0`" + newItemComponents[2] + "`" + newItemComponents[3])
         }
         newItems.append(newItem)
         return newItems
@@ -84,6 +103,7 @@ class NewItemViewController: UIViewController {
             return -1
         }
         else {
+            print(oldDate + " " + newDate)
             if oldDateComponents[1].integerValue! < newDateComponents[1].integerValue! {
                 return 1
             }
