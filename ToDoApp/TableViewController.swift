@@ -92,18 +92,28 @@ class TableViewController: UITableViewController {
         if indexPath.row == 0 {
             currentDay = components[2]
             currentDate = components[3]
-            cell.itemLabel.text! = currentDay!
+            cell.dayLabel.text! = currentDay!
+            cell.timeLabel.isHidden = true
+            cell.itemLabel.isHidden = true
+            cell.dateLabel.isHidden = true
+            cell.doneSwitch.isHidden = true
             return cell
         }
         else if currentDay != components[2] {
             currentDay = components[2]
             currentDate = components[3]
-            cell.itemLabel.text! = currentDay!
+            cell.dayLabel.text! = currentDay!
+            cell.timeLabel.isHidden = true
+            cell.itemLabel.isHidden = true
+            cell.dateLabel.isHidden = true
+            cell.doneSwitch.isHidden = true
             return cell
         }
         print(currentDay!)
         cell.itemLabel.text! = components[0]
         cell.timeLabel.text! = components[1]
+        cell.dayLabel.isHidden = true
+        cell.dateLabel.isHidden = true
 
         // Configure the cell...
 
