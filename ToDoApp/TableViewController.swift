@@ -7,11 +7,42 @@
 //
 
 import UIKit
+import CoreData
 
 class TableViewController: UITableViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        NavigationViewController.keepContext = context
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Items")
+        request.returnsObjectsAsFaults = false
+        do {
+            let results = try context.fetch(request) as! [NSManagedObject]
+            if results.count > 0 {
+                NavigationViewController.items = results[0]
+            }
+            else {
+                let initialList = NSEntityDescription.insertNewObject(forEntityName: "Items", into: context)
+                initialList.setValue([String](), forKey: "toDo")
+                initialList.setValue([String](), forKey: "done")
+                
+                do {
+                    try context.save()
+                }
+                
+                catch {
+                    
+                }
+                
+            }
+            
+        }
+            
+        catch {
+            //add code
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

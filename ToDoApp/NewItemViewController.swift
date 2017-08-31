@@ -7,15 +7,42 @@
 //
 
 import UIKit
+import CoreData
 
 class NewItemViewController: UIViewController {
 
+    @IBOutlet weak var itemInput: UITextField!
+    @IBOutlet weak var timeInput: UITextField!
+    @IBOutlet weak var dayofWeekInput: UITextField!
+    
+    var keepContext: NSManagedObjectContext?
+    var items: NSManagedObject?
+    
     override func viewDidLoad() {
+        keepContext = NavigationViewController.keepContext
+        items = NavigationViewController.items
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func saveButton(_ sender: UIButton) {
+        let newItem = itemInput.text! + "`" + timeInput.text! + "`" + dayofWeekInput.text!
+        let previousItems = items!.value(forKey: "toDo") as! [String]
+        let UpdatedItems = [newItem] + previousItems
+        items?.setValue(UpdatedItems, forKey: "toDo")
+        do {
+            try keepContext!.save()
+        }
+        catch {
+            
+        }
+        
+        itemInput.text! = ""
+        timeInput.text! = ""
+        dayofWeekInput.text! = ""
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
