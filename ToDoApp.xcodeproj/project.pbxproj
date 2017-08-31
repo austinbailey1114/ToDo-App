@@ -16,7 +16,6 @@
 		EC02C97B1F577C87005C14FD /* ToDoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC02C97A1F577C87005C14FD /* ToDoAppUITests.swift */; };
 		EC02C98D1F5790DA005C14FD /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC02C98C1F5790DA005C14FD /* TableViewController.swift */; };
 		EC02C98F1F579100005C14FD /* NewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC02C98E1F579100005C14FD /* NewItemViewController.swift */; };
-		EC02C9911F579241005C14FD /* DayCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC02C9901F579241005C14FD /* DayCellTableViewCell.swift */; };
 		EC02C9931F57925E005C14FD /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC02C9921F57925E005C14FD /* ItemTableViewCell.swift */; };
 		EC02C9951F579C40005C14FD /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC02C9941F579C40005C14FD /* NavigationViewController.swift */; };
 /* End PBXBuildFile section */
@@ -54,7 +53,6 @@
 		EC02C97C1F577C87005C14FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC02C98C1F5790DA005C14FD /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		EC02C98E1F579100005C14FD /* NewItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemViewController.swift; sourceTree = "<group>"; };
-		EC02C9901F579241005C14FD /* DayCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCellTableViewCell.swift; sourceTree = "<group>"; };
 		EC02C9921F57925E005C14FD /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		EC02C9941F579C40005C14FD /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,7 +109,6 @@
 				EC02C98C1F5790DA005C14FD /* TableViewController.swift */,
 				EC02C9941F579C40005C14FD /* NavigationViewController.swift */,
 				EC02C95B1F577C87005C14FD /* Main.storyboard */,
-				EC02C9901F579241005C14FD /* DayCellTableViewCell.swift */,
 				EC02C9921F57925E005C14FD /* ItemTableViewCell.swift */,
 				EC02C98E1F579100005C14FD /* NewItemViewController.swift */,
 				EC02C9611F577C87005C14FD /* Assets.xcassets */,
@@ -275,7 +272,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC02C9911F579241005C14FD /* DayCellTableViewCell.swift in Sources */,
 				EC02C9601F577C87005C14FD /* ToDoApp.xcdatamodeld in Sources */,
 				EC02C98D1F5790DA005C14FD /* TableViewController.swift in Sources */,
 				EC02C98F1F579100005C14FD /* NewItemViewController.swift in Sources */,

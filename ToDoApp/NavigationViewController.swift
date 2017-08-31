@@ -9,6 +9,18 @@
 import UIKit
 import CoreData
 
+extension String {
+    var doubleValue: Double? {
+        return Double(self)
+    }
+    var floatValue: Float? {
+        return Float(self)
+    }
+    var integerValue: Int? {
+        return Int(self)
+    }
+}
+
 class NavigationViewController: UINavigationController {
     
     static var keepContext: NSManagedObjectContext?

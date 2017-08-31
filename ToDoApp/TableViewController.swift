@@ -13,6 +13,9 @@ class TableViewController: UITableViewController {
     
     var keepContext: NSManagedObjectContext?
     var items: NSManagedObject?
+    var currentDate: String?
+    var currentDay: String?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,11 +70,12 @@ class TableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        items = NavigationViewController.items
         let toDo = items!.value(forKey: "toDo") as! [String]
         return toDo.count
     }
@@ -81,9 +85,23 @@ class TableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as? ItemTableViewCell else {
             fatalError("Fatal error")
         }
+        
         let toDo = items!.value(forKey: "toDo") as! [String]
         let item = toDo[indexPath.row]
         let components = item.components(separatedBy: "`")
+        if indexPath.row == 0 {
+            currentDay = components[2]
+            currentDate = components[3]
+            cell.itemLabel.text! = currentDay!
+            return cell
+        }
+        else if currentDay != components[2] {
+            currentDay = components[2]
+            currentDate = components[3]
+            cell.itemLabel.text! = currentDay!
+            return cell
+        }
+        print(currentDay!)
         cell.itemLabel.text! = components[0]
         cell.timeLabel.text! = components[1]
 
