@@ -526,6 +526,7 @@
 				EC02C9811F577C87005C14FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EC02C9821F577C87005C14FD /* Build configuration list for PBXNativeTarget "ToDoAppTests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +535,7 @@
 				EC02C9841F577C87005C14FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EC02C9851F577C87005C14FD /* Build configuration list for PBXNativeTarget "ToDoAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -542,6 +544,7 @@
 				EC02C9871F577C87005C14FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

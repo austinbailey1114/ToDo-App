@@ -16,7 +16,6 @@ class TableViewController: UITableViewController {
     var currentDate: String?
     var currentDay: String?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,7 +52,7 @@ class TableViewController: UITableViewController {
         
         keepContext = NavigationViewController.keepContext
         items = NavigationViewController.items
-        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -70,14 +69,32 @@ class TableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        
+        var i = 1
+        let items = NavigationViewController.items!.value(forKey: "toDo") as! [String]
+        if items.count > 0 {
+            var currentDate = items[0].components(separatedBy: "`")[3]
+            for item in items {
+                if item.components(separatedBy: "`")[3] != currentDate {
+                    i += 1
+                    currentDate = item.components(separatedBy: "`")[3]
+                }
+            }
+            
+        }
+        return i
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        items = NavigationViewController.items
         let toDo = items!.value(forKey: "toDo") as! [String]
-        return toDo.count
+        let sections = makeSections(items: toDo)
+
+        if sections.count > 0 {
+            return sections[section].count
+
+        }
+        else {return 0}
     }
 
     
@@ -86,38 +103,52 @@ class TableViewController: UITableViewController {
             fatalError("Fatal error")
         }
         let toDo = items!.value(forKey: "toDo") as! [String]
-        let item = toDo[indexPath.row]
-        let components = item.components(separatedBy: "`")
-        
+        let sections = makeSections(items: toDo)
+
+        let components = sections[indexPath.section][indexPath.row].components(separatedBy: "`")
         cell.itemLabel.text! = components[0]
-        cell.timeLabel.text! = components[1]
-        cell.dayLabel.text! = components[2]
-        cell.dateLabel.text! = ""
-        if cell.itemLabel.text! == "0" && cell.timeLabel.text! == "0" {
-            cell.itemLabel.isHidden = true
-            cell.timeLabel.isHidden = true
-            cell.doneSwitch.isHidden = true
-            cell.dateLabel.isHidden = true
-            cell.dayLabel.isHidden = false
-            cell.backgroundColor! = UIColor(red:0.75, green:0.75, blue:0.75, alpha:1.0)
-
-        }
-        else {
-            cell.dayLabel.isHidden = true
-            cell.itemLabel.isHidden = false
-            cell.timeLabel.isHidden = false
-            cell.doneSwitch.isHidden = false
-            cell.dateLabel.isHidden = false
-            cell.backgroundColor! = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
-        }
-
-        // Configure the cell...
-
+        cell.timeLabel.text! = components[2]
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let toDo = items!.value(forKey: "toDo") as! [String]
+        let sections = makeSections(items: toDo)
+        return "test"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
+    }
+    
+    func makeSections(items: [String]) -> [[String]] {
+        if items.count > 0 {
+            var sections = [[String]]()
+            var currentDate = items[0].components(separatedBy: "`")[3]
+            var newSection = [String]()
+            for item in items {
+                print(currentDate)
+                //doesn't add because its never equal
+                if item.components(separatedBy: "`")[3] == currentDate {
+                    newSection.append(item)
+                }
+                
+                if item.components(separatedBy: "`")[3] != currentDate {
+                    let copyOfNewSection = newSection
+                    sections.append(copyOfNewSection)
+                    newSection = [item]
+                    print("in else: " + currentDate)
+                    currentDate = item.components(separatedBy: "`")[3]
+                    print("in else 2: " + currentDate)
+                }
+            }
+            sections.append(newSection)
+
+            return sections
+        }
+        
+        return [[]]
+        
     }
     
     

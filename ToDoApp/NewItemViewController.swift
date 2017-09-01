@@ -61,16 +61,8 @@ class NewItemViewController: UIViewController {
             let components = item.components(separatedBy: "`")
             //if new date is before old date, insert before
             if compareDates(oldDate: components[3], newDate: newItemComponents[3]) == -1 {
-                if !newItems.contains("0`0`" + newItemComponents[2] + "`" + newItemComponents[3]) {
-                    newItems.insert("0`0`" + newItemComponents[2] + "`" + newItemComponents[3], at: i)
-                    newItems.insert(newItem, at: i + 1)
-                    return newItems
-                }
-                else {
-                    newItems.insert(newItem, at: i)
-                    return newItems
-                }
-                
+                newItems.insert(newItem, at: i)
+                return newItems
             }
             //if new date is same as old date, insert based on time
             else if compareDates(oldDate: components[3], newDate: newItemComponents[3]) == 0 {
@@ -85,9 +77,7 @@ class NewItemViewController: UIViewController {
             i += 1
             
         }
-        if !newItems.contains("0`0`" + newItemComponents[2] + "`" + newItemComponents[3]) {
-            newItems.append("0`0`" + newItemComponents[2] + "`" + newItemComponents[3])
-        }
+        
         newItems.append(newItem)
         return newItems
     }
