@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class NewItemViewController: UIViewController {
+class NewItemViewController: UIViewController, UIPickerViewDelegate {
 
     @IBOutlet weak var itemInput: UITextField!
     @IBOutlet weak var timeInput: UITextField!
@@ -23,6 +23,13 @@ class NewItemViewController: UIViewController {
         keepContext = NavigationViewController.keepContext
         items = NavigationViewController.items
         super.viewDidLoad()
+        let datePicker = UIDatePicker()
+        datePicker.timeZone = NSTimeZone.local
+        timeInput.inputView = datePicker
+        
+        datePicker.addTarget(self, action: #selector(self.datePickerValueChanged(_:)), for: .valueChanged)
+        
+        
 
         // Do any additional setup after loading the view.
     }
@@ -103,11 +110,28 @@ class NewItemViewController: UIViewController {
             else { return 0 }
         }
     }
+    
+    func datePickerValueChanged(_ sender: UIDatePicker){
         
+        // Create date formatter
+        let dateFormatter: DateFormatter = DateFormatter()
+        
+        // Set date format
+        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
+        
+        // Apply date format
+        let selectedDate: String = dateFormatter.string(from: sender.date)
+        timeInput.text! = selectedDate
+        
+        print("Selected value \(selectedDate)")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
 
     /*
