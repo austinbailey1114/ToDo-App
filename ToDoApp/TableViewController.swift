@@ -107,14 +107,14 @@ class TableViewController: UITableViewController {
 
         let components = sections[indexPath.section][indexPath.row].components(separatedBy: "`")
         cell.itemLabel.text! = components[0]
-        cell.timeLabel.text! = components[2]
+        cell.timeLabel.text! = components[1]
         return cell
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let toDo = items!.value(forKey: "toDo") as! [String]
         let sections = makeSections(items: toDo)
-        return "test"
+        return sections[section][0].components(separatedBy: "`")[2] +  " " + sections[section][0].components(separatedBy: "`")[3]
     }
     
     override func viewWillAppear(_ animated: Bool) {

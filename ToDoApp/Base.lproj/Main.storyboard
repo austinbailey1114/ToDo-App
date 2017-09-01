@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="-802" y="139"/>
         </scene>
-        <!--Table View Controller-->
+        <!--ToDo-->
         <scene sceneID="wVH-Jn-iC4">
             <objects>
                 <tableViewController id="ZCb-H7-5pV" customClass="TableViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -74,7 +74,7 @@
                             <outlet property="delegate" destination="ZCb-H7-5pV" id="jFB-AI-Ks9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="M7e-9F-yrs">
+                    <navigationItem key="navigationItem" title="ToDo" id="M7e-9F-yrs">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="3fc-ZS-tWf">
                             <connections>
                                 <segue destination="alK-gV-BT1" kind="show" id="oqY-vO-Akp"/>
