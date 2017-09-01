@@ -36,7 +36,8 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
 
     @IBAction func saveButton(_ sender: UIButton) {
         //add to CoreData
-        let newItem = itemInput.text! + "`" + timeInput.text! + "`" + dayofWeekInput.text! + "`" + dateInput.text!
+        let dateComponents = timeInput.text!.components(separatedBy: " ")
+        let newItem = itemInput.text! + "`" + toMilitary(time: dateComponents[2] + ":" + dateComponents[3]) + "`" + dateComponents[0] + "`" + dateComponents[1]
         let previousItems = items!.value(forKey: "toDo") as! [String]
         let UpdatedItems = insertItem(previousItems: previousItems, newItem: newItem)
         items!.setValue(UpdatedItems, forKey: "toDo")
@@ -49,8 +50,7 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
         
         itemInput.text! = ""
         timeInput.text! = ""
-        dayofWeekInput.text! = ""
-        dateInput.text! = ""
+        
         
         for item in UpdatedItems {
             print(item)
@@ -74,7 +74,7 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
             //if new date is same as old date, insert based on time
             else if compareDates(oldDate: components[3], newDate: newItemComponents[3]) == 0 {
                 //PROBLEM if you have more than 1 item on this date, itll just add at i+1
-                if components[1].integerValue! > newItemComponents[1].integerValue! {
+                if compareTimes(oldTime: components[1], newTime: newItemComponents[1]) == -1 {
                     newItems.insert(newItem, at: i)
                 }
                 
@@ -100,7 +100,6 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
             return -1
         }
         else {
-            print(oldDate + " " + newDate)
             if oldDateComponents[1].integerValue! < newDateComponents[1].integerValue! {
                 return 1
             }
@@ -111,13 +110,53 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
         }
     }
     
+    func compareTimes(oldTime: String, newTime: String) -> Int {
+        //returns -1 for time is earlier, 0 for same, 1 for later
+        let oldTimeComponents = oldTime.components(separatedBy: ":")
+        let newTimeComponents = newTime.components(separatedBy: ":")
+        if oldTimeComponents[0].integerValue! < newTimeComponents[0].integerValue! {
+            return 1
+        }
+        else if newTimeComponents[0].integerValue! < oldTimeComponents[0].integerValue! {
+            return -1
+        }
+        else {
+            if oldTimeComponents[1].integerValue! < newTimeComponents[1].integerValue! {
+                return 1
+            }
+            else if newTimeComponents[1].integerValue! < oldTimeComponents[1].integerValue! {
+                return -1
+            }
+            else {return 0}
+        }
+    }
+    
+    func toMilitary(time: String) -> String {
+        let timeComponents = time.components(separatedBy: ":")
+        var hour = timeComponents[0]
+        let half = timeComponents[2]
+        if half == "AM" {
+            if hour == "12" {
+                hour = "00"
+            }
+        }
+        else if half == "PM" {
+            if hour != "12" {
+                var intHour = hour.integerValue!
+                intHour += 12
+                hour = String(intHour)
+            }
+        }
+        return hour + ":" + timeComponents[1]
+    }
+    
     func datePickerValueChanged(_ sender: UIDatePicker){
         
         // Create date formatter
         let dateFormatter: DateFormatter = DateFormatter()
         
         // Set date format
-        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
+        dateFormatter.dateFormat = "EEEE MM/dd hh:mm a"
         
         // Apply date format
         let selectedDate: String = dateFormatter.string(from: sender.date)
@@ -125,6 +164,7 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
         
         print("Selected value \(selectedDate)")
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

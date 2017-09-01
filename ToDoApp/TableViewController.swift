@@ -114,7 +114,10 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let toDo = items!.value(forKey: "toDo") as! [String]
         let sections = makeSections(items: toDo)
-        return sections[section][0].components(separatedBy: "`")[2] +  " " + sections[section][0].components(separatedBy: "`")[3]
+        if sections.count > 1 {
+            return sections[section][0].components(separatedBy: "`")[2] +  " " + sections[section][0].components(separatedBy: "`")[3]
+        }
+        else {return "Nothing to do."}
     }
     
     override func viewWillAppear(_ animated: Bool) {
