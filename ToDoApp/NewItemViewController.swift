@@ -13,8 +13,6 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
 
     @IBOutlet weak var itemInput: UITextField!
     @IBOutlet weak var timeInput: UITextField!
-    @IBOutlet weak var dayofWeekInput: UITextField!
-    @IBOutlet weak var dateInput: UITextField!
     
     var keepContext: NSManagedObjectContext?
     var items: NSManagedObject?
@@ -28,8 +26,6 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
         timeInput.inputView = datePicker
         
         datePicker.addTarget(self, action: #selector(self.datePickerValueChanged(_:)), for: .valueChanged)
-        
-        
 
         // Do any additional setup after loading the view.
     }
@@ -57,6 +53,7 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
         }
         
     }
+    
     
     func insertItem(previousItems: [String], newItem: String) -> [String] {
         //if compareDates == 0, sort based on time
