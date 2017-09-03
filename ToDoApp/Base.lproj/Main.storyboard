@@ -41,13 +41,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Description Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qj7-wv-RNo">
-                                            <rect key="frame" x="74" y="0.0" width="293" height="55"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BB9-OI-Jcw">
                                             <rect key="frame" x="274" y="63" width="84" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -55,15 +48,17 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aXa-Ob-Jny">
-                                            <rect key="frame" x="8" y="34" width="51" height="31"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Description Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qj7-wv-RNo">
+                                            <rect key="frame" x="8" y="8" width="293" height="55"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </switch>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="doneSwitch" destination="aXa-Ob-Jny" id="bbv-pF-Xxz"/>
                                     <outlet property="itemLabel" destination="qj7-wv-RNo" id="8ve-r8-SFG"/>
                                     <outlet property="timeLabel" destination="BB9-OI-Jcw" id="dhT-BS-W6L"/>
                                 </connections>
@@ -86,7 +81,7 @@
             </objects>
             <point key="canvasLocation" x="109.59999999999999" y="138.98050974512745"/>
         </scene>
-        <!--New Item View Controller-->
+        <!--New Item-->
         <scene sceneID="Kw0-Jm-HMq">
             <objects>
                 <viewController id="alK-gV-BT1" customClass="NewItemViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -115,7 +110,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="uX5-an-5Y9">
+                    <navigationItem key="navigationItem" title="New Item" id="uX5-an-5Y9">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="I5L-Hu-Rah">
                             <connections>
                                 <segue destination="xry-Ot-eZp" kind="show" id="JHZ-5t-jOG"/>
