@@ -27,6 +27,8 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
         timeInput.inputView = datePicker
         
         datePicker.addTarget(self, action: #selector(self.datePickerValueChanged(_:)), for: .valueChanged)
+        
+        itemInput.becomeFirstResponder()
 
         // Do any additional setup after loading the view.
     }

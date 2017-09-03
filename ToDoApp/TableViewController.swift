@@ -251,6 +251,7 @@ class TableViewController: UITableViewController {
                 
             }
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            //self.tableView.reloadData()
         }
     }
 
