@@ -18,6 +18,7 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
     var items: NSManagedObject?
     
     override func viewDidLoad() {
+        
         keepContext = NavigationViewController.keepContext
         items = NavigationViewController.items
         super.viewDidLoad()

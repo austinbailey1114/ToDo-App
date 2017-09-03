@@ -28,6 +28,7 @@ class TableViewController: UITableViewController {
             let results = try context.fetch(request) as! [NSManagedObject]
             if results.count > 0 {
                 NavigationViewController.items = results[0]
+                
             }
             else {
                 let initialList = NSEntityDescription.insertNewObject(forEntityName: "Items", into: context)
@@ -52,6 +53,32 @@ class TableViewController: UITableViewController {
         
         keepContext = NavigationViewController.keepContext
         items = NavigationViewController.items
+        
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd"
+        let result = formatter.string(from: date)
+        
+        var toDo = NavigationViewController.items!.value(forKey: "toDo") as! [String]
+        let i = 0
+        for item in toDo {
+            let components = item.components(separatedBy: "`")
+            if compareDates(oldDate: components[3], newDate: result) == 1{
+                toDo.remove(at: i)
+            }
+        }
+        
+        NavigationViewController.items!.setValue(toDo, forKey: "toDo")
+        
+        do {
+            try context.save()
+        }
+            
+        catch {
+            
+        }
+
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -153,6 +180,49 @@ class TableViewController: UITableViewController {
         return [[]]
         
     }
+    
+    func compareDates(oldDate: String, newDate: String) -> Int {
+        //returns -1 for new date is earlier date, 0 for same date, 1 for later date
+        let oldDateComponents = oldDate.components(separatedBy: "/")
+        let newDateComponents = newDate.components(separatedBy: "/")
+        if oldDateComponents[0].integerValue! < newDateComponents[0].integerValue! {
+            return 1
+        }
+        else if newDateComponents[0].integerValue! < oldDateComponents[0].integerValue! {
+            return -1
+        }
+        else {
+            if oldDateComponents[1].integerValue! < newDateComponents[1].integerValue! {
+                return 1
+            }
+            else if newDateComponents[1].integerValue! < oldDateComponents[1].integerValue! {
+                return -1
+            }
+            else { return 0 }
+        }
+    }
+    
+    func compareTimes(oldTime: String, newTime: String) -> Int {
+        //returns -1 for time is earlier, 0 for same, 1 for later
+        let oldTimeComponents = oldTime.components(separatedBy: ":")
+        let newTimeComponents = newTime.components(separatedBy: ":")
+        if oldTimeComponents[0].integerValue! < newTimeComponents[0].integerValue! {
+            return 1
+        }
+        else if newTimeComponents[0].integerValue! < oldTimeComponents[0].integerValue! {
+            return -1
+        }
+        else {
+            if oldTimeComponents[1].integerValue! < newTimeComponents[1].integerValue! {
+                return 1
+            }
+            else if newTimeComponents[1].integerValue! < oldTimeComponents[1].integerValue! {
+                return -1
+            }
+            else {return 0}
+        }
+    }
+
     
     
     
