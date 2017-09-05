@@ -13,19 +13,18 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
 
     @IBOutlet weak var itemInput: UITextField!
     @IBOutlet weak var timeInput: UITextField!
-    @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var alertLabel: UILabel!
-    @IBOutlet weak var testView: UIView!
     
     var keepContext: NSManagedObjectContext?
     var items: NSManagedObject?
+    override var canBecomeFirstResponder: Bool { return true }
     
     override func viewDidLoad() {
         
         keepContext = NavigationViewController.keepContext
         items = NavigationViewController.items
         super.viewDidLoad()
+        
         let datePicker = UIDatePicker()
         datePicker.minuteInterval = 15
         datePicker.timeZone = NSTimeZone.local
@@ -42,16 +41,16 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
         // Apply date format
         let selectedDate: String = dateFormatter.string(from: datePicker.date)
         timeInput.text! = selectedDate
+        timeInput.isUserInteractionEnabled = true
+        print(timeInput.canBecomeFirstResponder)
         
-        timeInput.addBorder(side: .bottom, thickness: 1.0, color: UIColor.lightGray)
-        itemInput.addBorder(side: .bottom, thickness: 1.0, color: UIColor.lightGray)
-        alertLabel.addBorder(side: .bottom, thickness: 1.0, color: UIColor.lightGray)
-        
-        
-        
+
         
         itemInput.becomeFirstResponder()
         
+        timeInput.addBorder(side: .bottom, thickness: 0.7, color: UIColor.lightGray)
+        itemInput.addBorder(side: .bottom, thickness: 0.7, color: UIColor.lightGray)
+        alertLabel.addBorder(side: .bottom, thickness: 0.7, color: UIColor.lightGray)
 
         // Do any additional setup after loading the view.
     }
@@ -191,7 +190,6 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     
     
