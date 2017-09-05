@@ -23,10 +23,22 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
         items = NavigationViewController.items
         super.viewDidLoad()
         let datePicker = UIDatePicker()
+        datePicker.minuteInterval = 15
         datePicker.timeZone = NSTimeZone.local
         timeInput.inputView = datePicker
         
         datePicker.addTarget(self, action: #selector(self.datePickerValueChanged(_:)), for: .valueChanged)
+        
+        // Create date formatter
+        let dateFormatter: DateFormatter = DateFormatter()
+        
+        // Set date format
+        dateFormatter.dateFormat = "EEEE MM/dd hh:mm a"
+        
+        // Apply date format
+        let selectedDate: String = dateFormatter.string(from: datePicker.date)
+        timeInput.text! = selectedDate
+
         
         itemInput.becomeFirstResponder()
 
@@ -161,8 +173,6 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
         // Apply date format
         let selectedDate: String = dateFormatter.string(from: sender.date)
         timeInput.text! = selectedDate
-        
-        print("Selected value \(selectedDate)")
     }
     
     
