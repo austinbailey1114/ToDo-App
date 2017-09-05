@@ -14,6 +14,7 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
     @IBOutlet weak var itemInput: UITextField!
     @IBOutlet weak var timeInput: UITextField!
     @IBOutlet weak var alertLabel: UILabel!
+    @IBOutlet weak var alertSwitch: UISwitch!
     
     var keepContext: NSManagedObjectContext?
     var items: NSManagedObject?
@@ -42,7 +43,7 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
         let selectedDate: String = dateFormatter.string(from: datePicker.date)
         timeInput.text! = selectedDate
         timeInput.isUserInteractionEnabled = true
-        print(timeInput.canBecomeFirstResponder)
+        alertSwitch.isOn = false
         
 
         

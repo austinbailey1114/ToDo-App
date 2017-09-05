@@ -134,7 +134,7 @@ class TableViewController: UITableViewController {
 
         let components = sections[indexPath.section][indexPath.row].components(separatedBy: "`")
         cell.itemLabel.text! = components[0]
-        cell.timeLabel.text! = components[1]
+        cell.timeLabel.text! = toNotMilitary(time: components[1])
         return cell
     }
     
@@ -252,6 +252,21 @@ class TableViewController: UITableViewController {
             }
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             //self.tableView.reloadData()
+        }
+    }
+    
+    func toNotMilitary(time: String) -> String {
+        let components = time.components(separatedBy: ":")
+        if components[0].integerValue! > 12 {
+            let hour = components[0].integerValue!
+            let newHour = hour - 12
+            return String(newHour) + ":" + components[1] + " PM"
+        }
+        else {
+            if components[0] == "00" {
+                return "12:" + components[1] + " AM"
+            }
+            else {return components[0] + ":" + components[1] + " AM"}
         }
     }
 
