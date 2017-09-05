@@ -71,6 +71,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="ToDo" id="M7e-9F-yrs">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="3fc-ZS-tWf">
+                            <color key="tintColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="VhL-8G-KvE" kind="show" id="fWe-F3-r22"/>
                             </connections>
@@ -94,14 +95,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Event Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fFw-sj-Elu">
-                                <rect key="frame" x="-1" y="103" width="376" height="33"/>
+                                <rect key="frame" x="16" y="103" width="376" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date and Time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aca-aF-UmV">
-                                <rect key="frame" x="-1" y="144" width="375" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owf-ij-moP">
+                                <rect key="frame" x="16" y="149" width="38" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date and Time" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aca-aF-UmV">
+                                <rect key="frame" x="154" y="144" width="205" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -111,21 +119,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Item" id="uX5-an-5Y9">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="I5L-Hu-Rah">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="cancel" id="I5L-Hu-Rah">
+                            <color key="tintColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="xry-Ot-eZp" kind="show" id="JHZ-5t-jOG"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add" style="plain" id="s6j-sI-Xv1">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bC9-YA-ajs">
-                                <rect key="frame" x="325" y="7" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add"/>
-                                <connections>
-                                    <action selector="saveButton:" destination="alK-gV-BT1" eventType="touchUpInside" id="Yma-aH-wqH"/>
-                                    <segue destination="xry-Ot-eZp" kind="show" id="klJ-sa-uIz"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="s6j-sI-Xv1">
+                            <color key="tintColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -135,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gB5-Dv-hmR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1994" y="139"/>
+            <point key="canvasLocation" x="1992.8" y="138.98050974512745"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YvF-JW-1qH">
@@ -154,7 +155,4 @@
             <point key="canvasLocation" x="1094" y="139"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="klJ-sa-uIz"/>
-    </inferredMetricsTieBreakers>
 </document>
