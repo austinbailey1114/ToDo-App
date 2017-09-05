@@ -134,7 +134,7 @@ class TableViewController: UITableViewController {
 
         let components = sections[indexPath.section][indexPath.row].components(separatedBy: "`")
         cell.itemLabel.text! = components[0]
-        cell.timeLabel.text! = toNotMilitary(time: components[1])
+        cell.timeLabel.text! = "By " + toNotMilitary(time: components[1])
         return cell
     }
     

@@ -56,7 +56,7 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func saveButton(_ sender: UIButton) {
+    @IBAction func addButton(_ sender: UIButton) {
         //add to CoreData
         let dateComponents = timeInput.text!.components(separatedBy: " ")
         let newItem = itemInput.text! + "`" + toMilitary(time: dateComponents[2] + ":" + dateComponents[3]) + "`" + dateComponents[0] + "`" + dateComponents[1]
@@ -73,14 +73,10 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
         itemInput.text! = ""
         timeInput.text! = ""
         
-        
-        for item in UpdatedItems {
-            print(item)
-        }
-        
+
     }
     
-    
+        
     func insertItem(previousItems: [String], newItem: String) -> [String] {
         //if compareDates == 0, sort based on time
         print(previousItems.count)
