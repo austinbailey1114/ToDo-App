@@ -15,6 +15,7 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
     @IBOutlet weak var timeInput: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var alertLabel: UILabel!
     @IBOutlet weak var testView: UIView!
     
     var keepContext: NSManagedObjectContext?
@@ -43,6 +44,8 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
         timeInput.text! = selectedDate
         
         timeInput.addBorder(side: .bottom, thickness: 1.0, color: UIColor.lightGray)
+        itemInput.addBorder(side: .bottom, thickness: 1.0, color: UIColor.lightGray)
+        alertLabel.addBorder(side: .bottom, thickness: 1.0, color: UIColor.lightGray)
         
         
         
@@ -189,10 +192,6 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        itemInput.resignFirstResponder()
-        timeInput.resignFirstResponder()
-    }
     
     
     
