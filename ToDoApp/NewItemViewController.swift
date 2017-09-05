@@ -13,6 +13,9 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
 
     @IBOutlet weak var itemInput: UITextField!
     @IBOutlet weak var timeInput: UITextField!
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var testView: UIView!
     
     var keepContext: NSManagedObjectContext?
     var items: NSManagedObject?
@@ -38,9 +41,14 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
         // Apply date format
         let selectedDate: String = dateFormatter.string(from: datePicker.date)
         timeInput.text! = selectedDate
-
+        
+        timeInput.addBorder(side: .bottom, thickness: 1.0, color: UIColor.lightGray)
+        
+        
+        
         
         itemInput.becomeFirstResponder()
+        
 
         // Do any additional setup after loading the view.
     }
@@ -179,6 +187,11 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        itemInput.resignFirstResponder()
+        timeInput.resignFirstResponder()
     }
     
     
