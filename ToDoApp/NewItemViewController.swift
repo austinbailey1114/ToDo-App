@@ -58,8 +58,12 @@ class NewItemViewController: UIViewController, UIPickerViewDelegate {
 
     @IBAction func addButton(_ sender: UIButton) {
         //add to CoreData
+        var alertStatus = "false"
+        if alertSwitch.isOn {
+            alertStatus = "true"
+        }
         let dateComponents = timeInput.text!.components(separatedBy: " ")
-        let newItem = itemInput.text! + "`" + toMilitary(time: dateComponents[2] + ":" + dateComponents[3]) + "`" + dateComponents[0] + "`" + dateComponents[1]
+        let newItem = itemInput.text! + "`" + toMilitary(time: dateComponents[2] + ":" + dateComponents[3]) + "`" + dateComponents[0] + "`" + dateComponents[1] + "`" + alertStatus
         let previousItems = items!.value(forKey: "toDo") as! [String]
         let UpdatedItems = insertItem(previousItems: previousItems, newItem: newItem)
         items!.setValue(UpdatedItems, forKey: "toDo")
